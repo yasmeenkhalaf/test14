@@ -34,6 +34,10 @@
         }
     },
     "autoload": {
+       
+        "files": [
+            "app/Helpers/NadHelpers.php"
+        ],
         "psr-4": {
             "App\\": "app/"
         },

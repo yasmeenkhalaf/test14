@@ -29,21 +29,29 @@
             @endif
 
             <div class="content">
-                <div><img src="../storage/{{ setting('site.logo') }}"></div>
+
+
+            <div><img src="./storage/{{ setting('site.logo') }}"></div>
                 <div class="title m-b-md">
                 {{ setting('site.title') }}
                 </div>
-             
-                       @if(!empty($page->image))
-                            <img src="../storage/{{$page->image}}" class="w-100 h-100" alt="news">
-                        @endif
 
-                        @if(!empty($page->body))
-                          <p>  @php echo $page->getTranslatedAttribute('body', 'locale', Config::get('app.locale'));  @endphp</p>
+
+          
+           
+              
+             
+                       @if(!empty($post->image))
+                            <img src="./storage/{{$post->image}}" class="w-100 h-100" alt="news">
+                        @endif
+                         <a href="post/{{ $post->slug }}"><h1>@php echo $post->getTranslatedAttribute('title', 'locale', Config::get('app.locale'));  @endphp
+</h1></a>
+                        @if(!empty($post->excerpt))
+                          <p>  @php echo $post->getTranslatedAttribute('excerpt', 'locale', Config::get('app.locale'));  @endphp</p>
                         @endif
 
                         
-                               
+                       
 
                 
                 <div>

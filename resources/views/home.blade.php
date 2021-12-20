@@ -175,32 +175,39 @@ img {vertical-align: middle;}
 
             <div class="content">
 <header style="background-color: #000;">
-                <div><img src="storage/{{ setting('site.logo') }}"></div>
-                 
-                <h1 style="color: #ffffff;">{{ setting('site.title') }}</h1>
-        </header>             
-                <ul class="navbar-nav ml-auto">
-  <!-- Language switcher -->
-  @foreach (app()->config->get('app.locales') as $key)
-    <li>
-      <a class="nav-link {{ app()->getLocale() === $key ? 'locale-active' : '' }}" href="{{ route('lang', $key) }}">
-        {{ strtoupper($key) }}
-      </a>
-    </li>
-  @endforeach
-</ul>
+                 <div><img src="{{getImage(setting('site.logo'),null)}}"></div>
+ 
 
+                <h1 style="color: #ffffff;">{{ setting('site.title') }}</h1>
+        </header>  
+        
+        <div class="lang-div mt-2">
+            <label class="w-100">
+                <span class="lang-select-arrow"></span>
+                <select class="lang-select text-center menu-nav-link w-100">
+                    <option value="{{ route('language','en') }}" {{$lang =='en'?'selected':''}}>ENGLISH</option>
+                    <option value="{{ route('language','ar') }}" {{$lang =='ar'?'selected':''}}>العربية</option>
+                </select>
+            </label>
+
+<a href="{{ route('language','en') }}">ENGLISH</a>
+<a href="{{ route('language','ar') }}">العربية</a>
+
+
+        </div>
+
+    
 <hr>
                 <div><span>{{ setting('site.mobile') }}</span></div>
                 <div><span>{{ setting('site.whatsapp') }}</span></div>
                 <div><span>{{ setting('site.email') }}</span></div>
                 @php menu('main', 'my_menu');@endphp
                 <div class="links">
-                    <a href="https://laravel.com/docs">الرئيسية</a>
+                    <a href="https://laravel.com/docs">{{__('main.home')}}</a>
                    
                     @foreach($pages as $page)
 		 
-				<a href="/page/{{ $page->slug }}">
+				<a href="page/{{ $page->slug }}">
                 @php echo $page->getTranslatedAttribute('title', 'locale', Config::get('app.locale'));  @endphp
 					
 				</a>
@@ -208,7 +215,7 @@ img {vertical-align: middle;}
 		@endforeach
                     
                     <a href="https://laravel-news.com">خدماتنا</a>
-                    <a href="https://blog.laravel.com">مقالات</a>
+                    <a href="posts">مقالات</a>
                     <a href="https://nova.laravel.com">تواصل معنا</a>
                    
                 </div>
@@ -220,7 +227,7 @@ img {vertical-align: middle;}
                 <div class="slideshow-container">
                 @foreach($slides as $slide)
                 <div class="mySlides fade">
-   <img src="storage/{{$slide->image}}" style="width:100%">
+   <img src="{{getImage($slide->image,null)}}" style="width:100%">
   <div class="text">
   @php echo $slide->getTranslatedAttribute('title', 'locale', Config::get('app.locale'));  @endphp
 <br>
@@ -290,7 +297,7 @@ function showSlides(n) {
                 <div style="display: flex;">
  @if($page->images)
   @foreach (json_decode($page->images, true) as $image)
-  <img src="storage\{{ $image }}" class=" mb-3 w-100 img-responsive center-block">
+  <img src="{{getImage($image,null)}}" class=" mb-3 w-100 img-responsive center-block">
   @endforeach
   @endif
   </div></div>
@@ -323,7 +330,7 @@ function showSlides(n) {
 @if($services)
   @foreach ($services as $service)
  <div style="" class="col-lg-3 col-sm-3">
- <img src="storage/{{$service->image}}" style="width: 100%; margin: 10px;">
+ <img src="{{getImage($service->image,null)}}" style="width: 100%; margin: 10px;">
  <h6>@php echo $service->getTranslatedAttribute('title', 'locale', Config::get('app.locale'));  @endphp</h6>
 </div>
   @endforeach
@@ -343,7 +350,7 @@ function showSlides(n) {
 <p>@php echo $testimonial->getTranslatedAttribute('content', 'locale', Config::get('app.locale'));  @endphp</p>
 <p>@php echo $testimonial->getTranslatedAttribute('position', 'locale', Config::get('app.locale'));  @endphp</p>
 </div>
-<img src="storage/{{$testimonial->image}}" style="width: 300px; margin: 10px;">
+<img src="{{getImage($testimonial->image,null)}}" style="width: 300px; margin: 10px;">
 
 </div>
   @endforeach
@@ -365,7 +372,7 @@ function showSlides(n) {
 <p>@php echo $post->getTranslatedAttribute('excerpt', 'locale', Config::get('app.locale'));  @endphp</p>
 <p>@php echo $post->getTranslatedAttribute('created_at', 'locale', Config::get('app.locale'));  @endphp</p>
 </div>
-<img src="storage/{{$post->image}}" style="width: 300px; margin: 10px;">
+<img src="{{getImage($post->image,null)}}" style="width: 300px; margin: 10px;">
 
 </div>
   @endforeach

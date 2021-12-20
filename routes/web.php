@@ -20,17 +20,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home','HomeController@index')->name('home');
-/*
+
 Route::get('/page/{slug}', 'PagesController@index')->name('page.show');
 
-*/
+Route::get('/posts','PostsController@index')->name('posts');
+
+Route::get('/post/{slug}', 'PostsController@index')->name('post.show');
+ 
+
+/*
 Route::get('page/{slug}', function($slug){
 	$page = Page::where('slug', '=', $slug)->firstOrFail();
 	return view('page', compact('page'));
 });
+*/
 
 
-Route::get('/lang/{lang}',[LocalizationController::class, 'setLocalization'])->name('lang');
+
+//Route::get('/lang/{lang}',[LocalizationController::class, 'setLocalization'])->name('lang');
+Route::get('language/{lang}','LanguageController@ChangeLanguage')->name('language');
 
 
 Route::group(['prefix' => 'admin'], function () {
