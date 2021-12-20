@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home','HomeController@index')->name('home');
+/*
+Route::get('/page/{slug}', 'PagesController@index')->name('page.show');
+
+*/
+Route::get('page/{slug}', function($slug){
+	$page = Page::where('slug', '=', $slug)->firstOrFail();
+	return view('page', compact('page'));
+});
+
+
+Route::get('/lang/{lang}',[LocalizationController::class, 'setLocalization'])->name('lang');
 
 
 Route::group(['prefix' => 'admin'], function () {

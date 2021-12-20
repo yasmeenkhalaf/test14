@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title><?php echo setting('site.title');?></title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -80,19 +80,21 @@
             @endif
 
             <div class="content">
+                <div><img src="storage/{{ setting('site.logo') }}"></div>
                 <div class="title m-b-md">
-                    Laravel
+                {{ setting('site.title') }}
                 </div>
-
+                <div><span>{{ setting('site.mobile') }}</span></div>
+                <div><span>{{ setting('site.whatsapp') }}</span></div>
+                <div><span>{{ setting('site.email') }}</span></div>
+                @php menu('main', 'my_menu');@endphp
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://laravel.com/docs">الرئيسية</a>
+                    <a href="https://laracasts.com">من نحن</a>
+                    <a href="https://laravel-news.com">خدماتنا</a>
+                    <a href="https://blog.laravel.com">مقالات</a>
+                    <a href="https://nova.laravel.com">تواصل معنا</a>
+                   
                 </div>
             </div>
         </div>

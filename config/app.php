@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost/test14/public/'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -118,7 +118,11 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
-
+    'locales' => [
+        'ar',
+         
+        'en',
+    ],
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
