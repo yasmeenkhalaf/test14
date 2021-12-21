@@ -4,7 +4,11 @@ namespace App\Providers;
 use Illuminate\Support\Facades\App;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Events\Dispatcher;
+
 use Illuminate\Support\Facades\Cookie;
+use TCG\Voyager\Facades\Voyager;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
          // Change Language
          $this->Language();
+         Voyager::addAction(\App\Actions\AddPostsAction::class);
     }
 
     protected function Language()

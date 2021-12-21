@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\PostsController;
+//use App\Http\Controllers\Voyager\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,7 @@ Route::get('language/{lang}','LanguageController@ChangeLanguage')->name('languag
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::post('change_switch', 'Voyager\VoyagerController@changeswitch');
+    Route::get('posts/add/{id}', [App\Http\Controllers\Voyager\PostsController::class, 'addPost'])->name('posts.add');
+
 });

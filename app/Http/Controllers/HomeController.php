@@ -8,11 +8,16 @@ use TCG\Voyager\Models\Page;
 use App\Service;
 use App\Testimonial;
 use App\Post;
+use App\Http\Controllers\SiteController;
 
-class HomeController extends Controller
+class HomeController extends SiteController
 {
+    public $meta;
+
     public function index(){
         $lang = (request()->cookie('lang')) ? request()->cookie('lang') : "en";
+        $meta = $this->getMeta();
+
         $slides = Slider::orderBy('created_at','desc')->get();
         $pages = Page::get();
         $about = Page::where('slug' , '=', 'about')->withTranslation('ar')->get();
@@ -22,6 +27,7 @@ class HomeController extends Controller
           
         $compact = [
             'lang' => $lang,
+            'meta' => $meta,
             'slides'=>$slides,
             'pages'=>$pages,
             'about'=>$about,
